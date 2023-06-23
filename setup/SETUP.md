@@ -1,16 +1,20 @@
 # Setup from scratch
 
-> These instructions detail each step of the process for setting up this project from scratch.
+> These instructions are a community contribution
+> (thanks [@candidosales](https://github.com/candidosales)!)>
+> and are provided on a best-effort basis.
+>
+> These instructions detail steps in the process for setting up this project from scratch.
 > They cover Python environment setup up through deployment of the backend.
 > They do not cover Python installation or creation of the Discord bot.
 >
-> They are a community contribution (thanks [@candidosales](https://github.com/candidosales)!) and are provided on a best-effort basis.
->
-> If you notice and resolve an error, we'd be grateful if you submitted a PR to fix it.
+> If you notice and resolve an error during setup, we'd be grateful if you submitted a PR to fix it
+> and these docs.
 
 ## I. Setup the configuration file
 
-The `Makefile` gets configuration information like usernames and secrets from a file called `.env`.
+The `Makefile` gets configuration information like usernames and secrets from
+[dotenv files](https://www.dotenv.org/docs/security/env.html).
 
 We've included an empty template file, `.env.example`. Copy it to `.env` with:
 
@@ -18,7 +22,7 @@ We've included an empty template file, `.env.example`. Copy it to `.env` with:
 cp .env.example .env
 ```
 
-If you want a dev environment you can also copy it to  `.env.dev` file.
+If you want a dev environment you can also copy it to `.env.dev`:
 ```bash
 cp .env.example .env.dev
 ```
@@ -163,11 +167,11 @@ Sign up [here](https://platform.openai.com/signup?launch) and get an API key.
 
 Make sure you set up a payment method!
 
-> Creating the embeddings is cheap, on the order of a few cents.
+> Creating the embeddings is cheap, on the order of a fifty cents.
 >
 > But _each query of the chatbot_ costs a few cents, so you might also want to set a limit on your account.
 
-Add the OpenAI API key to the `.env` file.
+Add the OpenAI API key to the dotenv file.
 
 ### 3 - Configure a MongoDB document store
 
@@ -203,6 +207,10 @@ Name them `fsdl` and `ask-fsdl`, respectively.
 #### d - Create a user and password
 
 See instructions [here](https://www.youtube.com/watch?v=5-hybmPlZ_U&t=11s).
+Add the username and password to the dotenv file.
+
+Make sure you save the password somewhere safe as well,
+like a password manager.
 
 #### e - Enable network access
 
@@ -213,15 +221,26 @@ See instructions [here](https://www.youtube.com/watch?v=5-hybmPlZ_U&t=11s).
 #### f - Get the information required to connect to the database
 
 To allow the application to connect to the database,
-it needs to know a few things:
+we need to construct a
+[connection string](https://www.mongodb.com/docs/manual/reference/connection-string/),
+a
+[URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+for connecting to databases.
 
-1. A "URI" that tells it where the database is
+To construct the connection string,
+we need three pieces of information:
+
+1. The name of the host where the database is running
 2. The name of a database user with read/write access to the database and its collections
 3. The password for that user
 
-This information goes in the `.env` file.
+This information goes in the dotenv file.
+You should have already entered the username and password
+while creating the user.
+If not, you'll need to retrieve the password
+from wherever you stored it.
 
-You can find that information, except for the password,
+You can find the rest of the information
 in the "Connect" tab of the MongoDB Atlas dashboard:
 
 ![connect-1](./mongodb/connect-1.png)
@@ -233,7 +252,7 @@ in the "Connect" tab of the MongoDB Atlas dashboard:
 ### 5 - Push all of the configuration information to Modal
 
 For the application to run,
-it needs the information in the `.env` file.
+it needs the information in the dotenv file.
 
 We push that information to Modal with
 
@@ -286,7 +305,7 @@ You're now ready to ask the chatbot a question!
 Use this command, and feel free to substitute your own query.
 
 ```bash
-make cli-query $QUERY="What can you do?"
+make cli-query QUERY="What can you do?"
 ```
 
 You can turn this into a web service with
