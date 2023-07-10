@@ -56,7 +56,7 @@ vector-index: secrets ## sets up a FAISS vector index to the application
 
 document-store: secrets ## creates a MongoDB collection that contains the document corpus
 	@tasks/pretty_log.sh "See docstore.py and the ETL notebook for details"
-	tasks/run_etl.sh --drop --db $(MONGODB_DATABASE) --collection $(MONGODB_COLLECTION)
+	python tasks/run_etl.py --drop --db $(MONGODB_DATABASE) --collection $(MONGODB_COLLECTION)
 
 debugger: modal-auth ## starts a debugger running in our container but accessible via the terminal
 	modal shell app.py
@@ -70,7 +70,7 @@ secrets: modal-auth  ## pushes secrets from .env to Modal
 		$(error MONGODB_USER is not set. Please set it before running this target.))
 	@$(if $(value MONGODB_PASSWORD),, \
 		$(error MONGODB_PASSWORD is not set. Please set it before running this target.))
-	bash tasks/send_secrets_to_modal.sh
+	python tasks/send_secrets_to_modal.py
 
 modal-auth: environment ## confirms authentication with Modal, using secrets from `.env` file
 	@tasks/pretty_log.sh "If you haven't gotten a Modal token yet, run make modal-token"

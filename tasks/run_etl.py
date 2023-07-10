@@ -54,9 +54,12 @@ def main():
     if args.drop:
         drop_collection(args.db, args.collection)
 
-    modal_run("videos", "data/videos.json", args.db, args.collection)
-    modal_run("markdown", "data/lectures-2022.json", args.db, args.collection)
-    modal_run("pdfs", "data/llm-papers.json", args.db, args.collection)
+    # modal_run("videos", "data/videos.json", args.db, args.collection)
+    # modal_run("markdown", "data/lectures-2022.json", args.db, args.collection)
+    # modal_run("pdfs", "data/llm-papers.json", args.db, args.collection)
+    # modal_run("psd4Ido", "data/llm-papers.json", args.db, args.collection)
+    # modal_run("pdfs", "elyon.json", args.db, args.collection)
+    modal_run("hakika_xml", "data/hakika_xml.json", args.db, args.collection)
 
 
 if __name__ == "__main__":
