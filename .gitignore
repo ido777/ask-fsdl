@@ -4,6 +4,7 @@ documents.json
 
 .env
 .env.dev
+secrets/ 
 
 .ipynb_checkpoints/
 *.nbconvert.ipynb
