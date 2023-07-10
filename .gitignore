@@ -13,35 +13,5 @@ __pycache__
 .vscode
 
 
-data/doc_psd4Ido.json
-data/doc_psd4Ido_aug.json
-data/docx_Elyon-in.bak
-data/docx_Elyon-in.json
-data/docx_Elyon-in_augmented.json
-data/err_xml_Hakika_augmented.json
-data/rtf_psd4Ido.json
-data/xml_Hakika.json
-data/xml_Hakika_aug.json
-data/xml_Hakika_augmented.json
-data1/
 data_raw/
-doc_psd4Ido_aug.json
-err_xml_Hakika_aug.json
-error.log
-errors.json
-etl/agument_json_files.bak
-etl/agument_json_files.py
-etl/config.json
-etl/conver_xml.py
-etl/ingest.py
-etl/logger.py
-etl/parse_zip.py
-etl/test_agument_json_files.py
-history
-log.txt
-log/
-my.log
-output.html
-prepare_dinim.sh
-tasks/pretty_log.py
-tasks/test_pretty_lop.py
+data1/
